@@ -1,0 +1,33 @@
+/* Basic CSS styles will go here */ 
+
+body {
+    background-color: black;
+    color: white;
+    font-family: sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    text-align: center;
+}
+
+#content {
+    max-width: 600px;
+    padding: 20px;
+}
+
+.collapsible-title {
+    cursor: pointer;
+    border-bottom: 1px dotted white;
+    margin-top: 1em;
+    padding-bottom: 0.5em;
+}
+
+.collapsible-content {
+    display: none;
+    margin-top: 0.5em;
+    text-align: left;
+    padding-left: 1em;
+    border-left: 1px solid white;
+} 

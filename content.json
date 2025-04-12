@@ -1,0 +1,20 @@
+[
+  {
+    "type": "text",
+    "content": "Bienvenido a nuestra página web."
+  },
+  {
+    "type": "collapsible",
+    "title": "Sección Colapsable 1",
+    "content": "Este es el contenido de la primera sección colapsable. Puedes hacer clic en el título para mostrar u ocultar este texto."
+  },
+  {
+    "type": "text",
+    "content": "Aquí hay más texto estático."
+  },
+  {
+    "type": "collapsible",
+    "title": "Sección Colapsable 2",
+    "content": "Este es el contenido de la segunda sección colapsable. ¡Funciona igual que la primera!"
+  }
+] 
