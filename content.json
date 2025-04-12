@@ -1,12 +1,11 @@
 [
   {
     "type": "text",
-    "content": "Bienvenido a nuestra página web."
+    "content": "Mejoramos personas"
   },
   {
-    "type": "collapsible",
-    "title": "Sección Colapsable 1",
-    "content": "Este es el contenido de la primera sección colapsable. Puedes hacer clic en el título para mostrar u ocultar este texto."
+    "type": "text",
+    "content": "Lee nuestros artículos en Medium"
   },
   {
     "type": "text",
