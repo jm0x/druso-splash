@@ -112,17 +112,13 @@ body {
 }
 
 #content {
-    width: 90%;
+    width: 95%;
     max-width: 900px;
-    padding: 15px 30px;
-    padding-top: 30px;
+    margin: 0 auto;
+    padding: 20px 15px;
     display: flex;
     flex-direction: column;
     gap: 15px;
-    margin: 0 auto;
-    flex: 1;
-    justify-content: flex-start;
-    box-sizing: border-box;
 }
 
 .block-container {
@@ -372,13 +368,14 @@ body {
 /* Media queries para diferentes tamaños de pantalla */
 @media (max-width: 768px) {
     #content {
-        width: 90%;
-        padding: 15px 25px;
-        padding-top: 30px;
+        width: 100%;
+        padding: 15px 5px;
+        gap: 10px;
     }
     
-    .text-block, .collapsible-container, .libro-container {
-        padding: 15px;
+    .text-block, .collapsible-container, .podcast-container, .libro-container {
+        padding: 15px 10px;
+        margin: 0;
     }
     
     .logo {
@@ -396,19 +393,26 @@ body {
     }
     
     .libro-container {
-        min-height: 180px;
+        margin: 0;
+        padding: 0;
+    }
+    
+    .libro-title-container {
+        padding: 15px 10px;
+    }
+    
+    .libro-content-container {
+        padding: 15px 10px;
     }
 }
 
 @media (max-width: 480px) {
     #content {
-        width: 95%;
-        padding: 10px 20px;
-        padding-top: 20px;
+        padding: 10px 0;
     }
     
-    .text-block, .collapsible-container, .libro-container {
-        padding: 12px;
+    .text-block, .collapsible-container, .podcast-container, .libro-container {
+        padding: 12px 8px;
     }
     
     .logo {
@@ -425,20 +429,25 @@ body {
         margin-top: 1.2rem;
     }
     
-    .libro-container {
-        min-height: 160px;
+    .libro-title-container {
+        padding: 12px 8px;
+    }
+    
+    .libro-content-container {
+        padding: 12px 8px;
     }
 }
 
 /* Media query específica para orientación vertical en dispositivos móviles */
 @media (max-width: 768px) and (orientation: portrait) {
     #content {
-        width: 85%; /* Reducir el ancho para dar más margen a los lados */
-        padding: 15px 30px; /* Aumentar el padding horizontal */
+        width: 100%;
+        padding: 15px 5px;
     }
     
-    .text-block, .collapsible-container, .libro-container {
-        padding: 15px 20px; /* Aumentar el padding horizontal de los bloques */
+    .text-block, .collapsible-container, .libro-container, .podcast-container {
+        padding: 15px 10px;
+        margin: 0;
     }
     
     .slogan-container {
@@ -461,7 +470,7 @@ body {
     
     .libro-content-container, .podcast-content-container {
         width: 100%;
-        padding: 15px;
+        padding: 15px 10px;
         position: relative;
         z-index: 1;
         margin-top: 0;
@@ -472,12 +481,12 @@ body {
 /* Media query específica para orientación vertical en dispositivos muy pequeños */
 @media (max-width: 480px) and (orientation: portrait) {
     #content {
-        width: 90%; /* Reducir aún más el ancho para dar más margen a los lados */
-        padding: 10px 25px; /* Aumentar el padding horizontal */
+        width: 100%;
+        padding: 10px 2px;
     }
     
-    .text-block, .collapsible-container, .libro-container {
-        padding: 12px 18px; /* Aumentar el padding horizontal de los bloques */
+    .text-block, .collapsible-container, .libro-container, .podcast-container {
+        padding: 12px 8px;
     }
     
     .slogan-container {
@@ -488,32 +497,31 @@ body {
     .libro-image-container, .podcast-title-container {
         height: 120px;
     }
+    
+    .libro-content-container, .podcast-content-container {
+        padding: 12px 8px;
+    }
 }
 
 /* Ajustes específicos para Chrome en dispositivos móviles */
 @media screen and (-webkit-min-device-pixel-ratio:0) and (max-width: 768px) and (orientation: portrait) {
-    /* Ajustes específicos para Chrome en dispositivos móviles */
     #content {
-        width: 85%; /* Asegurar que haya suficiente margen en Chrome */
-        padding: 15px 30px;
+        width: 100%;
+        padding: 15px 5px;
     }
     
-    .text-block, .collapsible-container, .libro-container {
-        padding: 15px 18px;
-        /* Asegurar que el texto sea legible en Chrome */
-        font-size: 16px;
-        line-height: 1.5;
+    .text-block, .collapsible-container, .libro-container, .podcast-container {
+        padding: 15px 10px;
     }
     
-    /* Asegurar que el logo se vea bien en Chrome */
     .logo {
-        height: 80px; /* Aumentado ligeramente para Chrome móvil */
+        height: 80px;
         filter: brightness(0) invert(1) saturate(1000%) contrast(1000%);
         -webkit-filter: brightness(0) invert(1) saturate(1000%) contrast(1000%);
     }
     
     .navbar {
-        padding-top: 3rem; /* Más espacio en la parte superior para Chrome móvil */
+        padding-top: 3rem;
     }
     
     .slogan-container {
