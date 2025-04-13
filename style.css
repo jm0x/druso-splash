@@ -288,6 +288,25 @@ body {
     overflow: hidden;
 }
 
+.podcast-title-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, #ff00ff, #00ffff, #ff00ff);
+    background-size: 200% 200%;
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.podcast-container:hover .podcast-title-container::before {
+    opacity: 0.15;
+    animation: gradient-shift 3s ease infinite;
+}
+
 .podcast-episode-tag {
     background: rgba(255, 255, 255, 0.1);
     padding: 4px 8px;
@@ -425,6 +444,29 @@ body {
     .slogan-container {
         margin-top: 1.5rem;
     }
+    
+    /* Cambiar disposición de bloques de libro y podcast a filas en móvil vertical */
+    .libro-container, .podcast-container {
+        flex-direction: column;
+        min-height: auto;
+        overflow: visible;
+    }
+    
+    .libro-image-container, .podcast-title-container {
+        width: 100%;
+        height: 150px;
+        position: relative;
+        z-index: 2;
+    }
+    
+    .libro-content-container, .podcast-content-container {
+        width: 100%;
+        padding: 15px;
+        position: relative;
+        z-index: 1;
+        margin-top: 0;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
 }
 
 /* Media query específica para orientación vertical en dispositivos muy pequeños */
@@ -440,6 +482,11 @@ body {
     
     .slogan-container {
         margin-top: 1.2rem;
+    }
+    
+    /* Ajustar altura de las imágenes en dispositivos muy pequeños */
+    .libro-image-container, .podcast-title-container {
+        height: 120px;
     }
 }
 
@@ -488,6 +535,31 @@ body {
     cursor: pointer;
     text-align: center;
     border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.collapsible-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, #ff00ff, #00ffff, #ff00ff);
+    background-size: 200% 200%;
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.collapsible-container:hover::before {
+    opacity: 0.15;
+    animation: gradient-shift 3s ease infinite;
+}
+
+.collapsible-container:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(255, 255, 255, 0.1);
+    border-color: rgba(0, 255, 255, 0.5);
 }
 
 .collapsible-header {

@@ -19,28 +19,9 @@ document.addEventListener('DOMContentLoaded', () => {
         contentDiv.appendChild(blockElement);
       });
 
-      // Add click handlers for collapsible blocks
-      document.querySelectorAll('.collapsible-container').forEach(container => {
-        container.addEventListener('click', (event) => {
-          // Si el bloque tiene un enlace, no colapsar/expandir
-          if (container.dataset.link) {
-            window.open(container.dataset.link, '_blank');
-            return;
-          }
-          
-          container.classList.toggle('active');
-        });
-      });
-      
       // Add click handlers for all blocks with links
       document.querySelectorAll('[data-link]').forEach(block => {
         block.addEventListener('click', (event) => {
-          // Si el bloque es colapsable, no abrir enlace al hacer clic en el encabezado
-          if (block.classList.contains('collapsible-container') && 
-              event.target.closest('.collapsible-header')) {
-            return;
-          }
-          
           // Si el bloque tiene un enlace, abrirlo en una nueva ventana
           if (block.dataset.link) {
             window.open(block.dataset.link, '_blank');
@@ -90,7 +71,8 @@ function createBlock(block) {
       blockElement.appendChild(header);
       blockElement.appendChild(content);
       
-      header.addEventListener('click', () => {
+      // Hacer que todo el bloque sea clickeable para expandir/colapsar
+      blockElement.addEventListener('click', () => {
         blockElement.classList.toggle('active');
       });
       break;

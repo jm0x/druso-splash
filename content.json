@@ -1,6 +1,14 @@
 [
   {
     "id": 1,
+    "type": "colapsable",
+    "title": "Consultoria DEI.",
+    "sticky": true,
+    "link": "",
+    "content": "Ofrecemos asesoría especializada en Diversidad, Equidad e Inclusión (DEI), enfocándonos en acompañar a empresas que deseen avanzar hacia una sostenibilidad social auténtica y transformadora."
+  },
+  {
+    "id": 2,
     "type": "texto",
     "title": "Lee nuestros articulos en Medium",
     "sticky": true,
