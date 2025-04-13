@@ -1,7 +1,7 @@
 /* Basic CSS styles will go here */ 
 
 body {
-    background-color: black;
+    background-color: #0a0a0a;
     color: white;
     font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
     display: flex;
@@ -11,35 +11,41 @@ body {
 }
 
 .navbar {
-    background-color: black;
-    border-bottom: 1px solid white;
-    padding: 1rem;
+    background-color: #0a0a0a;
+    padding: 1.5rem 1rem;
+    padding-top: 2rem;
     width: 100%;
     box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .navbar-brand {
-    color: white;
-    font-size: 1.5rem;
-    font-weight: bold;
     text-align: center;
-    font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
-    letter-spacing: 1px;
+}
+
+.logo {
+    height: 60px;
+    width: auto;
+    filter: brightness(0) invert(1); /* Esto hace que el SVG sea blanco */
 }
 
 #content {
-    max-width: 600px;
+    width: 90%;
+    max-width: 800px;
     padding: 20px;
+    padding-top: 40px;
     display: flex;
     flex-direction: column;
     gap: 20px;
     margin: 0 auto;
     flex: 1;
-    justify-content: center;
+    justify-content: flex-start;
 }
 
 .text-block, .collapsible-container {
-    background-color: black;
+    background-color: #0a0a0a;
     color: white;
     padding: 20px;
     border-radius: 8px;
@@ -103,4 +109,47 @@ body {
     text-align: center;
     padding-top: 10px;
     border-top: 1px solid white;
+}
+
+/* Media queries para diferentes tamaños de pantalla */
+@media (max-width: 768px) {
+    #content {
+        width: 95%;
+        padding: 15px;
+        padding-top: 30px;
+    }
+    
+    .text-block, .collapsible-container {
+        padding: 15px;
+    }
+    
+    .logo {
+        height: 45px;
+    }
+    
+    .navbar {
+        padding: 1.2rem 1rem;
+        padding-top: 1.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    #content {
+        width: 98%;
+        padding: 10px;
+        padding-top: 20px;
+    }
+    
+    .text-block, .collapsible-container {
+        padding: 12px;
+    }
+    
+    .logo {
+        height: 40px;
+    }
+    
+    .navbar {
+        padding: 1rem;
+        padding-top: 1.2rem;
+    }
 } 
