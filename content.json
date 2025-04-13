@@ -2,65 +2,53 @@
   {
     "id": 1,
     "type": "texto",
-    "title": "Mejoramos personas",
+    "title": "Lee nuestros articulos en Medium",
     "sticky": true,
-    "link": "https://www.druso.es"
-  },
-  {
-    "id": 2,
-    "type": "texto",
-    "title": "Escucha nuestro podcast",
-    "sticky": true,
-    "link": "https://www.druso.es/podcast"
+    "link": "https://medium.com/drusopsicologos"
   },
   {
     "id": 3,
     "type": "podcast",
-    "title": "Psicología Aplicada",
-    "content": "Episodio 1: Introducción a la psicología aplicada",
-    "link": "assets/podcast-ep1.mp3",
-    "sticky": false
-  },
-  {
-    "id": 4,
-    "type": "texto",
-    "title": "Psicologia aplicada en la Hosteleria y el Turismo",
+    "title": "Filicidas, ¿quién puede matar a un hijo?.",
+    "content": "En este capítulo desvelamos los secretos de las mentes de aquellas personas que asesinan a sus hijos.",
+    "link": "assets/drusopsicologos_podcast_ep24.mp3",
     "sticky": false,
-    "link": "https://www.druso.es/psicologia-hosteleria"
+    "episode": 24
   },
   {
     "id": 5,
     "type": "libro",
     "title": "Psicoecología. La teoría del futuro pasado.",
-    "content": "En este libro, el autor recoge pautas, consejos y trucos para que todo aquel que se dedique al sector de la hostelería y el turismo salga enriquecido tanto a nivel personal como económico. En el sector servicios es fundamental que el cliente reciba un trato excelente.",
+    "content": "Un libro en el que el autor argumenta, de forma personal, su teoría acerca del poder terapéutico que la naturaleza y el medioambiente pueden ejercer sobre la mente humana.",
     "backgroundImage": "psicoecologia.png",
     "sticky": false,
-    "link": "https://www.druso.es/libros/psicoecologia"
+    "link": "https://www.amazon.es/Psicoecolog%C3%ADa-teor%C3%ADa-del-futuro-pasado/dp/8491757597"
   },
   {
     "id": 6,
     "type": "libro",
-    "title": "TRANS - AGE: ¿Cuál es tu verdadera edad?",
+    "title": "TRANS - AGE: ¿Cuál es tu verdadera edad?.",
     "content": "¿Sientes que tu edad no se corresponde a lo que indica tu documento de identidad? ¿Y si te dijera que en realidad es posible que tengas otra edad? Este libro te invita a romper las cadenas de la edad cronológica y a descubrir una nueva identidad basada en tu cuerpo, mente y alma.",
     "backgroundImage": "transage.png",
     "sticky": true,
-    "link": "https://www.druso.es/libros/trans-age"
+    "link": "https://www.amazon.es/TRANS-AGE-%C2%BFCu%C3%A1l-verdadera-edad/dp/B0DLBG317Y"
   },
   {
     "id": 7,
     "type": "libro",
     "title": "Psicología Aplicada en la Hosteleria y el Turismo.",
-    "content": "En este libro, el autor recoge pautas, consejos y trucos para que todo aquel que se dedique al sector de la hostelería y el turismo salga enriquecido tanto a nivel personal como económico. En el sector servicios es fundamental que el cliente reciba un trato excelente.",
+    "content": "En este libro, el autor recoge pautas, consejos y trucos para que todo aquel que se dedique al sector de la hostelería y el turismo salga enriquecido tanto a nivel personal como económico.",
     "backgroundImage": "psicologia_turismo.png",
     "sticky": false,
-    "link": "https://www.druso.es/libros/psicologia-hosteleria"
+    "link": "https://www.amazon.es/PSICOLOG%C3%8DA-APLICADA-HOSTELER%C3%8DA-TURISMO-fidelizar/dp/8490763216"
   },
   {
     "id": 8,
     "type": "podcast",
-    "title": "Psicoecología",
-    "content": "Episodio 2: Teoría del futuro pasado",
-    "link": "assets/podcast-ep2.mp3",
-    "sticky": false
+    "title": "Las fobias más extrañas.",
+    "content": "En este programa te contamos qué son las fobias y algunas de las más extrañas.",
+    "link": "assets/drusopsicologos_podcast_ep23.mp3",
+    "sticky": false,
+    "episode": 23
   }
 ] 

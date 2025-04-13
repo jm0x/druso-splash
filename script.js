@@ -52,76 +52,92 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 function createBlock(block) {
-  const container = document.createElement('div');
-  container.className = 'block-container';
-
-  switch (block.type) {
+  const blockElement = document.createElement('div');
+  
+  switch(block.type) {
     case 'texto':
-      const textBlock = document.createElement('div');
-      textBlock.className = 'text-block';
-      textBlock.innerHTML = `<h3>${block.title}</h3>`;
+      blockElement.className = 'text-block';
       if (block.link) {
-        textBlock.dataset.link = block.link;
-        textBlock.style.cursor = 'pointer';
+        blockElement.setAttribute('data-link', block.link);
+        blockElement.style.cursor = 'pointer';
       }
-      container.appendChild(textBlock);
-      break;
-    case 'colapsable':
-      const collapsibleContainer = document.createElement('div');
-      collapsibleContainer.className = 'collapsible-container';
-      if (block.link) {
-        collapsibleContainer.dataset.link = block.link;
-      }
-      collapsibleContainer.innerHTML = `
-        <div class="collapsible-header">
-          <h3>${block.title}</h3>
-          <span class="toggle-icon">+</span>
-        </div>
-        <div class="collapsible-content">
-          <p>${block.content}</p>
-        </div>
-      `;
-      container.appendChild(collapsibleContainer);
-      break;
-    case 'libro':
-      const libroContainer = document.createElement('div');
-      libroContainer.className = 'libro-container';
-      if (block.link) {
-        libroContainer.dataset.link = block.link;
-        libroContainer.style.cursor = 'pointer';
-      }
-      
-      const imageContainer = document.createElement('div');
-      imageContainer.className = 'libro-image-container';
-      imageContainer.style.backgroundImage = `url('assets/${block.backgroundImage}')`;
-      
-      const contentContainer = document.createElement('div');
-      contentContainer.className = 'libro-content-container';
-      
       const title = document.createElement('h3');
-      title.className = 'libro-title';
       title.textContent = block.title;
+      blockElement.appendChild(title);
+      break;
+      
+    case 'colapsable':
+      blockElement.className = 'collapsible-container';
+      const header = document.createElement('div');
+      header.className = 'collapsible-header';
+      
+      const headerTitle = document.createElement('h3');
+      headerTitle.textContent = block.title;
+      
+      const toggleIcon = document.createElement('span');
+      toggleIcon.className = 'toggle-icon';
+      toggleIcon.textContent = '+';
+      
+      header.appendChild(headerTitle);
+      header.appendChild(toggleIcon);
       
       const content = document.createElement('div');
-      content.className = 'libro-content';
-      content.innerHTML = `<p>${block.content}</p>`;
+      content.className = 'collapsible-content';
+      const contentText = document.createElement('p');
+      contentText.textContent = block.content;
+      content.appendChild(contentText);
       
-      contentContainer.appendChild(title);
-      contentContainer.appendChild(content);
-      libroContainer.appendChild(imageContainer);
-      libroContainer.appendChild(contentContainer);
-      container.appendChild(libroContainer);
+      blockElement.appendChild(header);
+      blockElement.appendChild(content);
+      
+      header.addEventListener('click', () => {
+        blockElement.classList.toggle('active');
+      });
       break;
-    case 'podcast':
-      const podcastContainer = document.createElement('div');
-      podcastContainer.className = 'podcast-container';
+      
+    case 'libro':
+      blockElement.className = 'libro-container';
       if (block.link) {
-        podcastContainer.dataset.link = block.link;
-        podcastContainer.style.cursor = 'pointer';
+        blockElement.setAttribute('data-link', block.link);
+        blockElement.style.cursor = 'pointer';
       }
+      
+      const libroImageContainer = document.createElement('div');
+      libroImageContainer.className = 'libro-image-container';
+      if (block.backgroundImage) {
+        libroImageContainer.style.backgroundImage = `url(assets/${block.backgroundImage})`;
+      }
+      
+      const libroContentContainer = document.createElement('div');
+      libroContentContainer.className = 'libro-content-container';
+      
+      const libroTitle = document.createElement('h3');
+      libroTitle.className = 'libro-title';
+      libroTitle.textContent = block.title;
+      
+      const libroContent = document.createElement('p');
+      libroContent.className = 'libro-content';
+      libroContent.textContent = block.content;
+      
+      libroContentContainer.appendChild(libroTitle);
+      libroContentContainer.appendChild(libroContent);
+      
+      blockElement.appendChild(libroImageContainer);
+      blockElement.appendChild(libroContentContainer);
+      break;
+      
+    case 'podcast':
+      blockElement.className = 'podcast-container';
       
       const podcastTitleContainer = document.createElement('div');
       podcastTitleContainer.className = 'podcast-title-container';
+      
+      if (block.episode) {
+        const episodeTag = document.createElement('div');
+        episodeTag.className = 'podcast-episode-tag';
+        episodeTag.textContent = `Podcast Episodio ${block.episode}`;
+        podcastTitleContainer.appendChild(episodeTag);
+      }
       
       const podcastTitle = document.createElement('h3');
       podcastTitle.className = 'podcast-title';
@@ -130,26 +146,36 @@ function createBlock(block) {
       const podcastContentContainer = document.createElement('div');
       podcastContentContainer.className = 'podcast-content-container';
       
-      const podcastContent = document.createElement('div');
+      const podcastContent = document.createElement('p');
       podcastContent.className = 'podcast-content';
       podcastContent.textContent = block.content;
       
       const podcastPlayer = document.createElement('div');
       podcastPlayer.className = 'podcast-player';
-      
       const audio = document.createElement('audio');
       audio.controls = true;
       audio.src = block.link;
+      podcastPlayer.appendChild(audio);
+      
+      // Añadir el enlace solo al reproductor de audio
+      if (block.link) {
+        const playerLink = document.createElement('a');
+        playerLink.href = block.link;
+        playerLink.target = '_blank';
+        playerLink.style.textDecoration = 'none';
+        playerLink.appendChild(podcastPlayer);
+        podcastContentContainer.appendChild(podcastContent);
+        podcastContentContainer.appendChild(playerLink);
+      } else {
+        podcastContentContainer.appendChild(podcastContent);
+        podcastContentContainer.appendChild(podcastPlayer);
+      }
       
       podcastTitleContainer.appendChild(podcastTitle);
-      podcastPlayer.appendChild(audio);
-      podcastContentContainer.appendChild(podcastContent);
-      podcastContentContainer.appendChild(podcastPlayer);
-      podcastContainer.appendChild(podcastTitleContainer);
-      podcastContainer.appendChild(podcastContentContainer);
-      container.appendChild(podcastContainer);
+      blockElement.appendChild(podcastTitleContainer);
+      blockElement.appendChild(podcastContentContainer);
       break;
   }
-
-  return container;
+  
+  return blockElement;
 } 
