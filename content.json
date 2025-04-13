@@ -1,23 +1,29 @@
 [
   {
-    "type": "text",
-    "content": "Lee nuestros articulos en Medium"
+    "type": "texto",
+    "content": "Mejoramos personas"
   },
   {
-    "type": "text",
+    "type": "texto",
     "content": "Escucha nuestro podcast"
   },
   {
-    "type": "text",
+    "type": "texto",
     "content": "Psicologia aplicada en la Hosteleria y el Turismo"
   },
   {
-    "type": "text",
+    "type": "texto",
     "content": "Psicoecologia, teoria del futuro pasado"
   },
   {
-    "type": "collapsible",
+    "type": "colapsable",
     "title": "TRANS-AGE, cual es tu verdadera edad",
-    "content": "Este es el contenido de la segunda sección colapsable. ¡Funciona igual que la primera!"
+    "content": "El envejecimiento es un proceso natural que afecta a todos los seres vivos. A medida que envejecemos, nuestro cuerpo experimenta cambios físicos y mentales que pueden afectar nuestra calidad de vida. Sin embargo, gracias a los avances en la medicina y la tecnología, ahora tenemos más opciones para mantener una buena salud y vitalidad a medida que envejecemos."
+  },
+  {
+    "type": "libro",
+    "title": "El Arte de la Transformación",
+    "content": "Un viaje fascinante a través de la mente y el cuerpo humano, explorando los límites de lo posible.",
+    "backgroundImage": "book-background.jpg"
   }
 ] 

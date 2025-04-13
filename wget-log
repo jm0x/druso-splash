@@ -1,0 +1,11 @@
+--2025-04-13 13:38:48--  https://images.unsplash.com/photo-1507842217343-583bb7270b66?w=800
+Resolving images.unsplash.com (images.unsplash.com)... 151.101.194.208, 151.101.2.208, 151.101.66.208, ...
+Connecting to images.unsplash.com (images.unsplash.com)|151.101.194.208|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 149128 (146K) [image/jpeg]
+Saving to: ‘assets/book-background.jpg’
+
+assets/book-background.   0%[                               ]       0  --.-KB/s               assets/book-background. 100%[==============================>] 145.63K  --.-KB/s    in 0.01s   
+
+2025-04-13 13:38:49 (11.3 MB/s) - ‘assets/book-background.jpg’ saved [149128/149128]
+
