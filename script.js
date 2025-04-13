@@ -1,75 +1,55 @@
 // JavaScript code will go here 
 
 document.addEventListener('DOMContentLoaded', () => {
-    fetch('content.json')
-        .then(response => response.json())
-        .then(data => {
-            const contentDiv = document.getElementById('content');
-            data.forEach(item => {
-                if (item.type === 'texto') {
-                    const p = document.createElement('p');
-                    p.textContent = item.content;
-                    p.classList.add('text-block');
-                    contentDiv.appendChild(p);
-                } else if (item.type === 'colapsable') {
-                    const container = document.createElement('div');
-                    container.classList.add('collapsible-container');
+  fetch('content.json')
+    .then(response => response.json())
+    .then(data => {
+      const contentDiv = document.getElementById('content');
+      
+      // Sort blocks by sticky first, then by id
+      const sortedBlocks = data.sort((a, b) => {
+        if (a.sticky === b.sticky) {
+          return a.id - b.id;
+        }
+        return b.sticky - a.sticky;
+      });
 
-                    const titleDiv = document.createElement('div');
-                    titleDiv.classList.add('collapsible-title');
-                    titleDiv.textContent = item.title;
+      sortedBlocks.forEach(block => {
+        const blockElement = createBlock(block);
+        contentDiv.appendChild(blockElement);
+      });
 
-                    const contentP = document.createElement('p');
-                    contentP.classList.add('collapsible-content');
-                    contentP.textContent = item.content;
-                    contentP.style.display = 'none'; // Aseguramos que esté oculto inicialmente
-
-                    titleDiv.addEventListener('click', () => {
-                        // Comprobamos si el contenido está oculto o visible
-                        if (contentP.style.display === 'none' || contentP.style.display === '') {
-                            contentP.style.display = 'block';
-                        } else {
-                            contentP.style.display = 'none';
-                        }
-                    });
-
-                    container.appendChild(titleDiv);
-                    container.appendChild(contentP);
-                    contentDiv.appendChild(container);
-                } else if (item.type === 'libro') {
-                    console.log('Creando bloque de tipo libro:', item);
-                    
-                    // Crear un nuevo bloque de tipo libro
-                    const libroContainer = document.createElement('div');
-                    libroContainer.classList.add('libro-container');
-                    
-                    // Aplicar la imagen de fondo si se proporciona
-                    if (item.backgroundImage) {
-                        const imagePath = `assets/${item.backgroundImage}`;
-                        libroContainer.style.backgroundImage = `url('${imagePath}')`;
-                    }
-                    
-                    // Crear el título del libro
-                    const libroTitle = document.createElement('div');
-                    libroTitle.classList.add('libro-title');
-                    libroTitle.textContent = item.title;
-                    
-                    // Crear el contenido principal del libro
-                    const libroContent = document.createElement('div');
-                    libroContent.classList.add('libro-content');
-                    libroContent.textContent = item.content;
-                    
-                    // Añadir los elementos al contenedor
-                    libroContainer.appendChild(libroTitle);
-                    libroContainer.appendChild(libroContent);
-                    
-                    // Añadir el contenedor al contenido principal
-                    contentDiv.appendChild(libroContainer);
-                }
-            });
-        })
-        .catch(error => console.error('Error loading content:', error));
-}); 
+      // Add click handlers for collapsible blocks
+      document.querySelectorAll('.collapsible-container').forEach(container => {
+        container.addEventListener('click', (event) => {
+          // Si el bloque tiene un enlace, no colapsar/expandir
+          if (container.dataset.link) {
+            window.open(container.dataset.link, '_blank');
+            return;
+          }
+          
+          container.classList.toggle('active');
+        });
+      });
+      
+      // Add click handlers for all blocks with links
+      document.querySelectorAll('[data-link]').forEach(block => {
+        block.addEventListener('click', (event) => {
+          // Si el bloque es colapsable, no abrir enlace al hacer clic en el encabezado
+          if (block.classList.contains('collapsible-container') && 
+              event.target.closest('.collapsible-header')) {
+            return;
+          }
+          
+          // Si el bloque tiene un enlace, abrirlo en una nueva ventana
+          if (block.dataset.link) {
+            window.open(block.dataset.link, '_blank');
+          }
+        });
+      });
+    })
+    .catch(error => console.error('Error loading content:', error));
+});
 
 function createBlock(block) {
   const container = document.createElement('div');
@@ -77,27 +57,48 @@ function createBlock(block) {
 
   switch (block.type) {
     case 'texto':
-      container.innerHTML = `<p>${block.content}</p>`;
+      const textBlock = document.createElement('div');
+      textBlock.className = 'text-block';
+      textBlock.innerHTML = `<h3>${block.title}</h3>`;
+      if (block.link) {
+        textBlock.dataset.link = block.link;
+        textBlock.style.cursor = 'pointer';
+      }
+      container.appendChild(textBlock);
       break;
     case 'colapsable':
-      container.innerHTML = `
-        <div class="collapsible-container">
-          <div class="collapsible-header">
-            <h3>${block.title}</h3>
-            <span class="toggle-icon">+</span>
-          </div>
-          <div class="collapsible-content">
-            <p>${block.content}</p>
-          </div>
+      const collapsibleContainer = document.createElement('div');
+      collapsibleContainer.className = 'collapsible-container';
+      if (block.link) {
+        collapsibleContainer.dataset.link = block.link;
+      }
+      collapsibleContainer.innerHTML = `
+        <div class="collapsible-header">
+          <h3>${block.title}</h3>
+          <span class="toggle-icon">+</span>
+        </div>
+        <div class="collapsible-content">
+          <p>${block.content}</p>
         </div>
       `;
+      container.appendChild(collapsibleContainer);
       break;
     case 'libro':
       const libroContainer = document.createElement('div');
       libroContainer.className = 'libro-container';
-      libroContainer.style.backgroundImage = `url('assets/${block.backgroundImage}')`;
+      if (block.link) {
+        libroContainer.dataset.link = block.link;
+        libroContainer.style.cursor = 'pointer';
+      }
       
-      const title = document.createElement('h2');
+      const imageContainer = document.createElement('div');
+      imageContainer.className = 'libro-image-container';
+      imageContainer.style.backgroundImage = `url('assets/${block.backgroundImage}')`;
+      
+      const contentContainer = document.createElement('div');
+      contentContainer.className = 'libro-content-container';
+      
+      const title = document.createElement('h3');
       title.className = 'libro-title';
       title.textContent = block.title;
       
@@ -105,9 +106,48 @@ function createBlock(block) {
       content.className = 'libro-content';
       content.innerHTML = `<p>${block.content}</p>`;
       
-      libroContainer.appendChild(title);
-      libroContainer.appendChild(content);
+      contentContainer.appendChild(title);
+      contentContainer.appendChild(content);
+      libroContainer.appendChild(imageContainer);
+      libroContainer.appendChild(contentContainer);
       container.appendChild(libroContainer);
+      break;
+    case 'podcast':
+      const podcastContainer = document.createElement('div');
+      podcastContainer.className = 'podcast-container';
+      if (block.link) {
+        podcastContainer.dataset.link = block.link;
+        podcastContainer.style.cursor = 'pointer';
+      }
+      
+      const podcastTitleContainer = document.createElement('div');
+      podcastTitleContainer.className = 'podcast-title-container';
+      
+      const podcastTitle = document.createElement('h3');
+      podcastTitle.className = 'podcast-title';
+      podcastTitle.textContent = block.title;
+      
+      const podcastContentContainer = document.createElement('div');
+      podcastContentContainer.className = 'podcast-content-container';
+      
+      const podcastContent = document.createElement('div');
+      podcastContent.className = 'podcast-content';
+      podcastContent.textContent = block.content;
+      
+      const podcastPlayer = document.createElement('div');
+      podcastPlayer.className = 'podcast-player';
+      
+      const audio = document.createElement('audio');
+      audio.controls = true;
+      audio.src = block.link;
+      
+      podcastTitleContainer.appendChild(podcastTitle);
+      podcastPlayer.appendChild(audio);
+      podcastContentContainer.appendChild(podcastContent);
+      podcastContentContainer.appendChild(podcastPlayer);
+      podcastContainer.appendChild(podcastTitleContainer);
+      podcastContainer.appendChild(podcastContentContainer);
+      container.appendChild(podcastContainer);
       break;
   }
 

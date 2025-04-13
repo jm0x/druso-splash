@@ -84,8 +84,6 @@ body {
     background-size: 200% 200%;
     z-index: -1;
     opacity: 0.3;
-    filter: blur(15px);
-    animation: gradient-shift 8s ease infinite;
     border-radius: 10px;
 }
 
@@ -115,12 +113,12 @@ body {
 
 #content {
     width: 90%;
-    max-width: 800px;
-    padding: 20px;
-    padding-top: 40px;
+    max-width: 900px;
+    padding: 15px 30px;
+    padding-top: 30px;
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 15px;
     margin: 0 auto;
     flex: 1;
     justify-content: flex-start;
@@ -132,30 +130,27 @@ body {
     box-sizing: border-box;
 }
 
-.text-block, .collapsible-container {
-    background-color: #0a0a0a;
-    color: white;
-    padding: 20px;
+.text-block, .collapsible-container, .podcast-container, .libro-container {
+    background: #0a0a0a;
     border-radius: 8px;
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    width: 100%;
-    box-sizing: border-box;
-    text-align: center;
-    transition: all 0.4s ease;
-    position: relative;
     overflow: hidden;
-    z-index: 1;
-    min-height: 50px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    position: relative;
+    padding: 15px;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-.text-block:hover, .collapsible-container:hover {
+.text-block[data-link], .libro-container[data-link], .podcast-container[data-link] {
+    cursor: pointer;
+}
+
+.text-block[data-link]:hover, .libro-container[data-link]:hover, .podcast-container[data-link]:hover {
     transform: translateY(-5px);
     box-shadow: 0 10px 20px rgba(255, 255, 255, 0.1);
     border-color: rgba(0, 255, 255, 0.5);
 }
 
-.text-block::before, .collapsible-container::before {
+.text-block[data-link]::before, .libro-container[data-link]::before, .podcast-container[data-link]::before {
     content: '';
     position: absolute;
     top: 0;
@@ -169,38 +164,131 @@ body {
     transition: opacity 0.4s ease;
 }
 
-.text-block:hover::before, .collapsible-container:hover::before {
+.text-block[data-link]:hover::before, .libro-container[data-link]:hover::before, .podcast-container[data-link]:hover::before {
     opacity: 0.15;
     animation: gradient-shift 3s ease infinite;
 }
 
-/* Estilos específicos para el bloque de tipo libro */
+/* Estilos para el bloque de tipo libro */
 .libro-container {
-    position: relative;
-    padding: 1.5rem;
-    margin: 1.5rem 0;
+    background: #0a0a0a;
     border-radius: 8px;
     overflow: hidden;
-    background-color: rgba(0, 0, 0, 0.5);
+    position: relative;
+    padding: 0;
     transition: all 0.3s ease;
+    cursor: pointer;
+    display: flex;
+    flex-direction: row;
     min-height: 120px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.libro-image-container {
+    width: 33%;
+    position: relative;
+    overflow: hidden;
+    background-size: cover;
+    background-position: center;
+    transition: transform 0.5s ease;
+    filter: grayscale(100%);
+    -webkit-filter: grayscale(100%);
+}
+
+.libro-image-container::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.3);
+}
+
+.libro-content-container {
+    width: 67%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    text-align: center;
-    width: 100%;
-    box-sizing: border-box;
+    padding: 15px;
+    position: relative;
     z-index: 1;
-    transform: translateY(0);
+    background-color: #0a0a0a;
+    overflow: hidden;
+}
+
+.libro-content-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, #ff00ff, #00ffff, #ff00ff);
+    background-size: 200% 200%;
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.libro-container:hover .libro-content-container::before {
+    opacity: 0.15;
+    animation: gradient-shift 3s ease infinite;
+}
+
+.libro-title {
+    margin: 0 0 10px 0;
+    color: #fff;
+    font-size: 1.2rem;
+    font-weight: 500;
+    text-align: center;
+}
+
+.libro-content {
+    color: #fff;
+    text-align: center;
+    line-height: 1.5;
 }
 
 .libro-container:hover {
     transform: translateY(-5px);
     box-shadow: 0 10px 20px rgba(255, 255, 255, 0.1);
+    border-color: rgba(0, 255, 255, 0.5);
 }
 
-.libro-container::before {
+.libro-container:hover .libro-image-container {
+    transform: scale(1.05);
+}
+
+/* Estilos para el bloque de tipo podcast */
+.podcast-container {
+    background: #0a0a0a;
+    border-radius: 8px;
+    overflow: hidden;
+    position: relative;
+    padding: 0;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    display: flex;
+    flex-direction: row;
+    min-height: 100px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.podcast-title-container {
+    width: 33%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
+    background: #0a0a0a;
+    position: relative;
+    z-index: 2;
+    overflow: hidden;
+}
+
+.podcast-title-container::before {
     content: '';
     position: absolute;
     top: 0;
@@ -214,92 +302,61 @@ body {
     transition: opacity 0.4s ease;
 }
 
-.libro-container:hover::before {
+.podcast-container:hover .podcast-title-container::before {
     opacity: 0.15;
     animation: gradient-shift 3s ease infinite;
 }
 
-.libro-container::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-size: cover;
-    background-position: center 50%;
-    transition: all 0.5s ease;
-    z-index: -2;
-    opacity: 0.7;
-}
-
-.libro-container:hover::after {
-    background-position: center 55%;
-    opacity: 0.8;
-    transform: scale(1.05);
-}
-
-.libro-title {
-    font-size: 1.5em;
-    margin-bottom: 0.5rem;
-    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
-    color: white;
-    position: relative;
-    z-index: 2;
-    font-weight: bold;
-    background-color: rgba(0, 0, 0, 0.2);
-    padding: 0.3rem 0.8rem;
-    border-radius: 4px;
-}
-
-.libro-content {
-    font-size: 0.9em;
-    line-height: 1.4;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
-    color: white;
-    position: relative;
-    z-index: 2;
-    max-width: 80%;
-    margin: 0 auto;
-    font-weight: 500;
-    background-color: rgba(0, 0, 0, 0.15);
-    padding: 0.5rem 1rem;
-    border-radius: 4px;
-}
-
-.libro-summary {
-    font-size: 0.85em;
-    font-style: italic;
-    margin-bottom: 1rem;
-    position: relative;
-    z-index: 2;
-    padding: 0 20px;
-    opacity: 0.9;
-    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5); /* Mejorar legibilidad del texto */
-}
-
-.collapsible-title {
-    cursor: pointer;
+.podcast-title {
     margin: 0;
-    padding-bottom: 0.5em;
+    color: #fff;
+    font-size: 1.2rem;
+    font-weight: 500;
     text-align: center;
 }
 
-.collapsible-content {
-    display: none;
-    margin-top: 10px;
+.podcast-content-container {
+    width: 67%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
+    position: relative;
+    z-index: 1;
+    background-color: #121212; /* Color ligeramente más claro que el fondo general */
+}
+
+.podcast-content {
+    margin-bottom: 10px;
+    color: #fff;
     text-align: center;
-    padding-top: 10px;
-    border-top: 1px solid rgba(255, 255, 255, 0.2); /* Línea divisoria más sutil */
+}
+
+.podcast-player {
     width: 100%;
-    box-sizing: border-box;
+    position: relative;
+    z-index: 2;
+}
+
+.podcast-player audio {
+    width: 100%;
+    height: 36px;
+    border-radius: 18px;
+    background: transparent;
+}
+
+.podcast-container:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(255, 255, 255, 0.1);
+    border-color: rgba(0, 255, 255, 0.5);
 }
 
 /* Media queries para diferentes tamaños de pantalla */
 @media (max-width: 768px) {
     #content {
-        width: 95%;
-        padding: 15px;
+        width: 90%;
+        padding: 15px 25px;
         padding-top: 30px;
     }
     
@@ -328,8 +385,8 @@ body {
 
 @media (max-width: 480px) {
     #content {
-        width: 98%;
-        padding: 10px;
+        width: 95%;
+        padding: 10px 20px;
         padding-top: 20px;
     }
     
@@ -360,7 +417,7 @@ body {
 @media (max-width: 768px) and (orientation: portrait) {
     #content {
         width: 85%; /* Reducir el ancho para dar más margen a los lados */
-        padding: 15px 25px; /* Aumentar el padding horizontal */
+        padding: 15px 30px; /* Aumentar el padding horizontal */
     }
     
     .text-block, .collapsible-container, .libro-container {
@@ -375,8 +432,8 @@ body {
 /* Media query específica para orientación vertical en dispositivos muy pequeños */
 @media (max-width: 480px) and (orientation: portrait) {
     #content {
-        width: 80%; /* Reducir aún más el ancho para dar más margen a los lados */
-        padding: 10px 20px; /* Aumentar el padding horizontal */
+        width: 90%; /* Reducir aún más el ancho para dar más margen a los lados */
+        padding: 10px 25px; /* Aumentar el padding horizontal */
     }
     
     .text-block, .collapsible-container, .libro-container {
@@ -392,8 +449,8 @@ body {
 @media screen and (-webkit-min-device-pixel-ratio:0) and (max-width: 768px) and (orientation: portrait) {
     /* Ajustes específicos para Chrome en dispositivos móviles */
     #content {
-        width: 80%; /* Asegurar que haya suficiente margen en Chrome */
-        padding: 15px 20px;
+        width: 85%; /* Asegurar que haya suficiente margen en Chrome */
+        padding: 15px 30px;
     }
     
     .text-block, .collapsible-container, .libro-container {
@@ -421,4 +478,99 @@ body {
     .slogan {
         font-size: 1.4em;
     }
+}
+
+.collapsible-container {
+    background: #0a0a0a;
+    border-radius: 8px;
+    overflow: hidden;
+    position: relative;
+    padding: 15px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    text-align: center;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.collapsible-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    cursor: pointer;
+    position: relative;
+}
+
+.collapsible-header h3 {
+    margin: 0;
+    color: #fff;
+    font-size: 1.2rem;
+    text-align: center;
+    flex: 1;
+}
+
+.toggle-icon {
+    color: #fff;
+    font-size: 1.5rem;
+    transition: transform 0.3s ease;
+    position: absolute;
+    right: 10px;
+}
+
+.collapsible-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out;
+    opacity: 0;
+    text-align: center;
+    padding: 0 20px;
+}
+
+.collapsible-content p {
+    margin: 0;
+    padding: 10px 0;
+    line-height: 1.5;
+}
+
+.collapsible-container.active .collapsible-content {
+    max-height: 500px;
+    opacity: 1;
+    transition: max-height 0.5s ease-in, opacity 0.3s ease-in;
+}
+
+.collapsible-container.active .toggle-icon {
+    transform: rotate(45deg);
+}
+
+.text-block h3,
+.collapsible-header h3,
+.libro-title,
+.podcast-title {
+    margin: 0;
+    color: #fff;
+    font-size: 1.2rem;
+    font-weight: 500;
+    text-align: center;
+    padding: 10px;
+}
+
+.text-block {
+    background: #0a0a0a;
+    border-radius: 8px;
+    overflow: hidden;
+    position: relative;
+    padding: 15px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.text-block p,
+.collapsible-content p,
+.libro-content p,
+.podcast-content {
+    font-size: 0.9rem;
+    line-height: 1.5;
+    margin: 0;
+    padding: 0;
 } 
