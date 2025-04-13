@@ -1,19 +1,23 @@
 [
   {
     "type": "text",
-    "content": "Mejoramos personas"
+    "content": "Lee nuestros articulos en Medium"
   },
   {
     "type": "text",
-    "content": "Lee nuestros artículos en Medium"
+    "content": "Escucha nuestro podcast"
   },
   {
     "type": "text",
-    "content": "Aquí hay más texto estático."
+    "content": "Psicologia aplicada en la Hosteleria y el Turismo"
+  },
+  {
+    "type": "text",
+    "content": "Psicoecologia, teoria del futuro pasado"
   },
   {
     "type": "collapsible",
-    "title": "Sección Colapsable 2",
+    "title": "TRANS-AGE, cual es tu verdadera edad",
     "content": "Este es el contenido de la segunda sección colapsable. ¡Funciona igual que la primera!"
   }
 ] 
