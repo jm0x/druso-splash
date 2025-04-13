@@ -44,6 +44,8 @@ body {
     text-align: center;
     margin-top: 2rem;
     margin-bottom: 1rem;
+    position: relative;
+    padding: 0.5rem 0;
 }
 
 .slogan {
@@ -51,6 +53,56 @@ body {
     font-weight: 300;
     letter-spacing: 0.5px;
     color: white;
+    position: relative;
+    z-index: 2;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+    animation: float 6s ease-in-out infinite;
+    background: linear-gradient(90deg, #ffffff, #00ffff, #ff00ff, #ffffff);
+    background-size: 300% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: float 6s ease-in-out infinite, gradient-shift 8s linear infinite;
+}
+
+.slogan::before {
+    content: '';
+    position: absolute;
+    top: -10px;
+    left: -10px;
+    right: -10px;
+    bottom: -10px;
+    background: linear-gradient(45deg, #ff00ff, #00ffff, #ff00ff);
+    background-size: 200% 200%;
+    z-index: -1;
+    opacity: 0.3;
+    filter: blur(15px);
+    animation: gradient-shift 8s ease infinite;
+    border-radius: 10px;
+}
+
+@keyframes float {
+    0% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-5px);
+    }
+    100% {
+        transform: translateY(0px);
+    }
+}
+
+@keyframes gradient-shift {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
 }
 
 #content {
@@ -71,7 +123,7 @@ body {
     color: white;
     padding: 20px;
     border-radius: 8px;
-    border: 1px solid white;
+    border: 1px solid rgba(255, 255, 255, 0.3); /* Borde más sutil y menos blanco */
     width: 100%;
     box-sizing: border-box;
     text-align: center;
@@ -80,12 +132,13 @@ body {
     overflow: hidden;
     z-index: 1;
     min-height: 50px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Sombra sutil para dar profundidad */
 }
 
 .text-block:hover, .collapsible-container:hover {
     transform: translateY(-5px);
     box-shadow: 0 10px 20px rgba(255, 255, 255, 0.1);
-    border-color: #00ffff;
+    border-color: rgba(0, 255, 255, 0.5); /* Color cyan más sutil al hacer hover */
 }
 
 .text-block::before, .collapsible-container::before {
@@ -107,18 +160,6 @@ body {
     animation: gradient-shift 3s ease infinite;
 }
 
-@keyframes gradient-shift {
-    0% {
-        background-position: 0% 50%;
-    }
-    50% {
-        background-position: 100% 50%;
-    }
-    100% {
-        background-position: 0% 50%;
-    }
-}
-
 .collapsible-title {
     cursor: pointer;
     margin: 0;
@@ -131,7 +172,7 @@ body {
     margin-top: 10px;
     text-align: center;
     padding-top: 10px;
-    border-top: 1px solid white;
+    border-top: 1px solid rgba(255, 255, 255, 0.2); /* Línea divisoria más sutil */
     width: 100%;
     box-sizing: border-box;
 }
