@@ -13,7 +13,7 @@ body {
 .navbar {
     background-color: #0a0a0a;
     padding: 1.5rem 1rem;
-    padding-top: 2rem;
+    padding-top: 2.5rem; /* Aumentado para dar más espacio en la parte superior */
     width: 100%;
     box-sizing: border-box;
     display: flex;
@@ -25,6 +25,9 @@ body {
 
 .navbar-brand {
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .logo {
@@ -35,6 +38,19 @@ body {
     -moz-filter: brightness(0) invert(1) saturate(1000%);
     -ms-filter: brightness(0) invert(1) saturate(1000%);
     -o-filter: brightness(0) invert(1) saturate(1000%);
+}
+
+.slogan-container {
+    text-align: center;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+}
+
+.slogan {
+    font-size: 1.5em; /* Tamaño más pequeño que antes */
+    font-weight: 300;
+    letter-spacing: 0.5px;
+    color: white;
 }
 
 #content {
@@ -138,7 +154,12 @@ body {
     
     .navbar {
         padding: 1.2rem 1rem;
-        padding-top: 1.5rem;
+        padding-top: 2rem;
+    }
+    
+    .slogan {
+        font-size: 1.3em;
+        margin-top: 1.5rem;
     }
 }
 
@@ -159,7 +180,12 @@ body {
     
     .navbar {
         padding: 1rem;
-        padding-top: 1.2rem;
+        padding-top: 1.5rem;
+    }
+    
+    .slogan {
+        font-size: 1.2em;
+        margin-top: 1.2rem;
     }
 }
 
@@ -173,6 +199,10 @@ body {
     .text-block, .collapsible-container {
         padding: 15px 20px; /* Aumentar el padding horizontal de los bloques */
     }
+    
+    .slogan-container {
+        margin-top: 1.5rem;
+    }
 }
 
 /* Media query específica para orientación vertical en dispositivos muy pequeños */
@@ -184,6 +214,10 @@ body {
     
     .text-block, .collapsible-container {
         padding: 12px 18px; /* Aumentar el padding horizontal de los bloques */
+    }
+    
+    .slogan-container {
+        margin-top: 1.2rem;
     }
 }
 
@@ -204,8 +238,20 @@ body {
     
     /* Asegurar que el logo se vea bien en Chrome */
     .logo {
-        height: 70px;
+        height: 80px; /* Aumentado ligeramente para Chrome móvil */
         filter: brightness(0) invert(1) saturate(1000%) contrast(1000%);
         -webkit-filter: brightness(0) invert(1) saturate(1000%) contrast(1000%);
+    }
+    
+    .navbar {
+        padding-top: 3rem; /* Más espacio en la parte superior para Chrome móvil */
+    }
+    
+    .slogan-container {
+        margin-top: 2.5rem;
+    }
+    
+    .slogan {
+        font-size: 1.4em;
     }
 } 
