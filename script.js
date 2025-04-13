@@ -9,6 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (item.type === 'text') {
                     const p = document.createElement('p');
                     p.textContent = item.content;
+                    p.classList.add('text-block');
                     contentDiv.appendChild(p);
                 } else if (item.type === 'collapsible') {
                     const titleDiv = document.createElement('div');
@@ -20,7 +21,9 @@ document.addEventListener('DOMContentLoaded', () => {
                     contentP.textContent = item.content;
 
                     titleDiv.addEventListener('click', () => {
-                        contentP.style.display = contentP.style.display === 'none' ? 'block' : 'none';
+                        const isCollapsed = contentP.style.display === 'none';
+                        contentP.style.display = isCollapsed ? 'block' : 'none';
+                        titleDiv.classList.toggle('collapsed', !isCollapsed);
                     });
 
                     contentDiv.appendChild(titleDiv);
