@@ -12,6 +12,9 @@ document.addEventListener('DOMContentLoaded', () => {
                     p.classList.add('text-block');
                     contentDiv.appendChild(p);
                 } else if (item.type === 'collapsible') {
+                    const container = document.createElement('div');
+                    container.classList.add('collapsible-container');
+
                     const titleDiv = document.createElement('div');
                     titleDiv.classList.add('collapsible-title');
                     titleDiv.textContent = item.title;
@@ -19,15 +22,20 @@ document.addEventListener('DOMContentLoaded', () => {
                     const contentP = document.createElement('p');
                     contentP.classList.add('collapsible-content');
                     contentP.textContent = item.content;
+                    contentP.style.display = 'none'; // Aseguramos que esté oculto inicialmente
 
                     titleDiv.addEventListener('click', () => {
-                        const isCollapsed = contentP.style.display === 'none';
-                        contentP.style.display = isCollapsed ? 'block' : 'none';
-                        titleDiv.classList.toggle('collapsed', !isCollapsed);
+                        // Comprobamos si el contenido está oculto o visible
+                        if (contentP.style.display === 'none' || contentP.style.display === '') {
+                            contentP.style.display = 'block';
+                        } else {
+                            contentP.style.display = 'none';
+                        }
                     });
 
-                    contentDiv.appendChild(titleDiv);
-                    contentDiv.appendChild(contentP);
+                    container.appendChild(titleDiv);
+                    container.appendChild(contentP);
+                    contentDiv.appendChild(container);
                 }
             });
         })
