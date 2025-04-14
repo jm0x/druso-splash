@@ -2,17 +2,10 @@
   {
     "id": 1,
     "type": "colapsable",
-    "title": "Consultoria DEI.",
+    "title": "Asesoría especializada en Diversidad, Equidad e Inclusión (DEI).",
     "sticky": true,
     "link": "",
-    "content": "Ofrecemos asesoría especializada en Diversidad, Equidad e Inclusión (DEI), enfocándonos en acompañar a empresas que deseen avanzar hacia una sostenibilidad social auténtica y transformadora. Nos centramos en el diseño de estrategias integrales para la incorporación efectiva de personas con discapacidad y miembros de colectivos vulnerables, asegurando el mantenimiento de sus puestos de trabajo y alcanzando posteriormente su pleno desarrollo y crecimiento tanto personal como laboral. Realizamos diagnósticos organizacionales, formación a equipos, desarrollo de políticas inclusivas, seguimiento diario e implementación de herramientas basadas en el coaching humanista. Nuestro propósito es mostrar la diversidad como la verdadera ventaja competitiva que marcará la diferencia en aquellas empresas que deseen aportar un valor social y humano añadido."
-  },
-  {
-    "id": 2,
-    "type": "texto",
-    "title": "Lee nuestros articulos en Medium.",
-    "sticky": true,
-    "link": "https://medium.com/drusopsicologos"
+    "content": "Ofrecemos asesoría especializada en Diversidad, Equidad e Inclusión (DEI), enfocándonos en acompañar a empresas que deseen avanzar hacia una sostenibilidad social auténtica y transformadora.\n\nNos centramos en el diseño de estrategias integrales para la incorporación efectiva de personas con discapacidad y miembros de colectivos vulnerables, asegurando el mantenimiento de sus puestos de trabajo y alcanzando posteriormente su pleno desarrollo y crecimiento tanto personal como laboral.\n\nRealizamos diagnósticos organizacionales, formación a equipos, desarrollo de políticas inclusivas, seguimiento diario e implementación de herramientas basadas en el coaching humanista.\n\nNuestro propósito es mostrar la diversidad como la verdadera ventaja competitiva que marcará la diferencia en aquellas empresas que deseen aportar un valor social y humano añadido."
   },
   {
     "id": 3,
@@ -35,7 +28,7 @@
   {
     "id": 6,
     "type": "libro",
-    "title": "TRANS - AGE: ¿Cuál es tu verdadera edad?.",
+    "title": "Trans-age: ¿Cuál es tu verdadera edad?.",
     "content": "¿Sientes que tu edad no se corresponde a lo que indica tu documento de identidad? ¿Y si te dijera que en realidad es posible que tengas otra edad? Este libro te invita a romper las cadenas de la edad cronológica y a descubrir una nueva identidad basada en tu cuerpo, mente y alma.",
     "backgroundImage": "transage.png",
     "sticky": true,

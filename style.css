@@ -51,40 +51,65 @@ body {
 .slogan-container {
     text-align: center;
     margin-top: 2rem;
-    margin-bottom: 1rem;
+    margin-bottom: 2rem;
     position: relative;
-    padding: 0.5rem 0;
 }
 
 .slogan {
-    font-size: 1.5em; /* Tamaño más pequeño que antes */
+    font-size: 1.3em;
     font-weight: 300;
     letter-spacing: 0.5px;
-    color: white;
     position: relative;
     z-index: 2;
-    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
-    animation: float 6s ease-in-out infinite;
     background: linear-gradient(90deg, #ffffff, #00ffff, #ff00ff, #ffffff);
     background-size: 300% 100%;
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
-    animation: float 6s ease-in-out infinite, gradient-shift 8s linear infinite;
+    animation: gradient-shift 6s linear infinite;
 }
 
 .slogan::before {
     content: '';
     position: absolute;
-    top: -10px;
-    left: -10px;
-    right: -10px;
-    bottom: -10px;
-    background: linear-gradient(45deg, #ff00ff, #00ffff, #ff00ff);
+    top: -3px;
+    left: -3px;
+    right: -3px;
+    bottom: -3px;
+    background: linear-gradient(45deg, rgba(255, 0, 255, 0.3), rgba(0, 255, 255, 0.3), rgba(255, 0, 255, 0.3));
     background-size: 200% 200%;
     z-index: -1;
-    opacity: 0.3;
+    opacity: 0.4;
     border-radius: 10px;
+    animation: gradient-shift 3s ease infinite;
+    filter: blur(6px) contrast(200%) brightness(200%);
+}
+
+.slogan::after {
+    content: '';
+    position: absolute;
+    top: -3px;
+    left: -3px;
+    right: -3px;
+    bottom: -3px;
+    background: radial-gradient(circle at center, rgba(255, 255, 255, 0.2) 0%, transparent 70%);
+    z-index: -1;
+    opacity: 0.6;
+    animation: pulse 3s ease-in-out infinite;
+}
+
+.slogan-container:hover .slogan {
+    transform: rotateX(5deg) rotateY(5deg);
+}
+
+.slogan-container:hover .slogan::before {
+    animation: gradient-shift 1.5s ease infinite;
+    opacity: 0.6;
+}
+
+.slogan-container:hover .slogan::after {
+    animation: pulse 2s ease-in-out infinite;
+    opacity: 0.8;
 }
 
 @keyframes float {
@@ -92,7 +117,7 @@ body {
         transform: translateY(0px);
     }
     50% {
-        transform: translateY(-5px);
+        transform: translateY(-3px);
     }
     100% {
         transform: translateY(0px);
@@ -111,14 +136,32 @@ body {
     }
 }
 
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+        opacity: 0.4;
+    }
+    50% {
+        transform: scale(1.1);
+        opacity: 0.7;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 0.4;
+    }
+}
+
 #content {
-    width: 95%;
-    max-width: 900px;
-    margin: 0 auto;
-    padding: 20px 15px;
+    width: 90%;
+    max-width: 800px;
+    padding: 20px;
+    padding-top: 40px;
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    gap: 30px;
+    margin: 0 auto;
+    flex: 1;
+    justify-content: flex-start;
 }
 
 .block-container {
@@ -127,13 +170,19 @@ body {
 }
 
 .text-block, .collapsible-container, .podcast-container, .libro-container {
-    background: #0a0a0a;
+    background-color: #0a0a0a;
+    color: white;
+    padding: 25px;
     border-radius: 8px;
-    overflow: hidden;
+    border: 1px solid white;
+    width: 100%;
+    box-sizing: border-box;
+    text-align: center;
+    transition: all 0.4s ease;
     position: relative;
-    padding: 15px;
-    transition: all 0.3s ease;
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    overflow: hidden;
+    z-index: 1;
+    min-height: 50px;
 }
 
 .text-block[data-link], .libro-container[data-link], .podcast-container[data-link] {
@@ -344,7 +393,6 @@ body {
     position: relative;
     z-index: 2;
     padding-top: 15px;
-    cursor: pointer;
 }
 
 .podcast-player a {
@@ -355,14 +403,38 @@ body {
 .podcast-player audio {
     width: 100%;
     height: 36px;
-    border-radius: 18px;
-    background: transparent;
+    margin-top: 10px;
+    border-radius: 20px;
+    background: rgba(0, 0, 0, 0.9);
+    outline: none;
 }
 
-.podcast-container:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(255, 255, 255, 0.1);
-    border-color: rgba(0, 255, 255, 0.5);
+/* Estilos para el reproductor de audio */
+audio {
+    width: 100%;
+    height: 36px;
+    margin-top: 10px;
+    border-radius: 20px;
+    background: rgba(0, 0, 0, 0.9);
+    outline: none;
+    display: block;
+    /* Resetear color por si acaso */
+    color: initial;
+}
+
+/* Estilos para el enlace de descarga */
+.download-link {
+    display: block;
+    margin-top: 10px;
+    color: #00ffff;
+    text-decoration: none;
+    font-size: 0.9em;
+    transition: color 0.3s ease;
+}
+
+.download-link:hover {
+    color: #ff00ff;
+    text-decoration: underline;
 }
 
 /* Media queries para diferentes tamaños de pantalla */
@@ -503,33 +575,15 @@ body {
     }
 }
 
-/* Ajustes específicos para Chrome en dispositivos móviles */
-@media screen and (-webkit-min-device-pixel-ratio:0) and (max-width: 768px) and (orientation: portrait) {
-    #content {
-        width: 100%;
-        padding: 15px 5px;
-    }
-    
-    .text-block, .collapsible-container, .libro-container, .podcast-container {
-        padding: 15px 10px;
-    }
-    
+/* Estilos específicos para Firefox en dispositivos móviles */
+@media (max-width: 768px) {
     .logo {
-        height: 80px;
-        filter: brightness(0) invert(1) saturate(1000%) contrast(1000%);
-        -webkit-filter: brightness(0) invert(1) saturate(1000%) contrast(1000%);
-    }
-    
-    .navbar {
-        padding-top: 3rem;
-    }
-    
-    .slogan-container {
-        margin-top: 2.5rem;
+        height: 70px; /* Unificado el tamaño del logo para Chrome y Firefox */
     }
     
     .slogan {
-        font-size: 1.4em;
+        font-size: 1.3em;
+        font-weight: 300;
     }
 }
 
@@ -608,6 +662,7 @@ body {
     margin: 0;
     padding: 10px 0;
     line-height: 1.5;
+    white-space: pre-wrap;
 }
 
 .collapsible-container.active .collapsible-content {
@@ -651,4 +706,5 @@ body {
     line-height: 1.5;
     margin: 0;
     padding: 0;
+    white-space: pre-wrap;
 } 

@@ -132,26 +132,20 @@ function createBlock(block) {
       podcastContent.className = 'podcast-content';
       podcastContent.textContent = block.content;
       
-      const podcastPlayer = document.createElement('div');
-      podcastPlayer.className = 'podcast-player';
-      const audio = document.createElement('audio');
-      audio.controls = true;
-      audio.src = block.link;
-      podcastPlayer.appendChild(audio);
+      // Crear el reproductor de audio de forma más directa
+      const audioElement = document.createElement('audio');
+      audioElement.controls = true;
+      audioElement.src = block.link;
+      audioElement.style.width = '100%';
+      audioElement.style.height = '36px';
+      audioElement.style.marginTop = '10px';
+      audioElement.style.borderRadius = '20px';
+      audioElement.style.background = 'rgba(0, 0, 0, 0.3)';
+      audioElement.style.outline = 'none';
+      audioElement.style.display = 'block';
       
-      // Añadir el enlace solo al reproductor de audio
-      if (block.link) {
-        const playerLink = document.createElement('a');
-        playerLink.href = block.link;
-        playerLink.target = '_blank';
-        playerLink.style.textDecoration = 'none';
-        playerLink.appendChild(podcastPlayer);
-        podcastContentContainer.appendChild(podcastContent);
-        podcastContentContainer.appendChild(playerLink);
-      } else {
-        podcastContentContainer.appendChild(podcastContent);
-        podcastContentContainer.appendChild(podcastPlayer);
-      }
+      podcastContentContainer.appendChild(podcastContent);
+      podcastContentContainer.appendChild(audioElement);
       
       podcastTitleContainer.appendChild(podcastTitle);
       blockElement.appendChild(podcastTitleContainer);
