@@ -64,7 +64,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       // Reemplaza con tus datos
       const botToken = "8152974123:AAHE6-zDaQ1HKkcH1UuED6dvn6nuDn3dQsg"; // TU TOKEN
-      const chatId = "12725"; // CORREGIDO CHAT ID FINAL
+      const chatId = "816441138"; // Actualizado CHAT ID
 
       // Enviar mensaje a Telegram
       fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
